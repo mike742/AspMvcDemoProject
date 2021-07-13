@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Product>
+
+<h2>Products</h2>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Descript</th>
+            <th scope="col">InDate</th>
+            <th scope="col">QOH</th>
+            <th scope="col">Price</th>
+            <th scope="col">Discount</th>
+            <th scope="col">Vendor Id</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.P_descript</th>
+                <td>@item.P_InDate.ToShortDateString()</td>
+                <td>@item.P_QOH</td>
+                <td>$@item.P_Price</td>
+                <td>@item.P_Discount</td>
+                <td>@item.V_code</td>
+            </tr>
+        }
+    </tbody>
+</table>

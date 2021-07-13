@@ -26,5 +26,24 @@ namespace AspMvcDemoProject.Controllers
             // return NotFound(); // 404
             return new UnsupportedMediaTypeResult();
         }
+
+        public IActionResult RedirectResult()
+        {
+            return Redirect("https://google.com");
+        }
+
+        public IActionResult JsonResult()
+        {
+            return Json(new
+            {
+                message = "this is a Json result",
+                date = DateTime.Now
+            });
+        }
+
+        public IActionResult ContentResult()
+        {
+            return Content("Hello! Is a content!");
+        }
     }
 }
