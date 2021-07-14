@@ -8,6 +8,11 @@ namespace AspMvcDemoProject.Controllers
 {
     public class DemoController : Controller
     {
+        public IActionResult CVM()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             //return "Hello World!!!";

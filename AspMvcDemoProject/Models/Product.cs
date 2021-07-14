@@ -15,5 +15,6 @@ namespace AspMvcDemoProject.Models
         public double P_Price { set; get; }
         public double P_Discount { set; get; }
         public int? V_code { set; get; }
+        public Vendor Vendor { set; get; }
     }
 }

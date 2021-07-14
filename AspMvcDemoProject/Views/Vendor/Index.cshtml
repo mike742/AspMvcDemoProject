@@ -12,15 +12,58 @@
         </tr>
     </thead>
     <tbody>
-        
+
         @foreach (var item in Model)
         {
-        <tr>
-            <th scope="row">@item.V_name</th>
-            <td>@item.V_contact</td>
-            <td>(@item.V_AreaCode) @item.V_phone</td>
-            <td>@item.V_state</td>
-        </tr>
+            <tr>
+                <th scope="row">
+                    <span 
+                          style="cursor: pointer"
+                          data-toggle="modal" 
+                          data-target="#exampleModal"
+                          onclick="Detail(@item.V_code, '@item.V_name')"
+                          >
+                        @item.V_name
+                    </span>
+                </th>
+                <td>@item.V_contact</td>
+                <td>(@item.V_AreaCode) @item.V_phone</td>
+                <td>@item.V_state</td>
+            </tr>
         }
     </tbody>
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function Detail(code, name) {
+        
+        const url = "@Url.Action("GetProdutsByVendorCode", "Product")/" + code;
+        console.log(code, url);
+
+        $.get(url, function (data) {
+            //console.log(data);
+            $('#exampleModalLabel').html("Products of " + name);
+            $('.modal-body').html(data);
+        });
+    }
+</script>

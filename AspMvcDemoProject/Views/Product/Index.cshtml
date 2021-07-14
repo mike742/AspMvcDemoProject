@@ -10,7 +10,7 @@
             <th scope="col">QOH</th>
             <th scope="col">Price</th>
             <th scope="col">Discount</th>
-            <th scope="col">Vendor Id</th>
+            <th scope="col">Vendor Name</th>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
                 <td>@item.P_QOH</td>
                 <td>$@item.P_Price</td>
                 <td>@item.P_Discount</td>
-                <td>@item.V_code</td>
+                <td>@item.Vendor.V_name</td>
             </tr>
         }
     </tbody>
