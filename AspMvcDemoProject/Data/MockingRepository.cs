@@ -46,9 +46,20 @@ namespace AspMvcDemoProject.Data
         {
             return _vendors;
         }
+
+        public static void AddVendor(Vendor obj)
+        {
+            _vendors.Add(obj);
+        }
+
         public static IEnumerable<Product> GetProducs()
         {
             return _products;
+        }
+
+        public static void AddProduct(Product obj)
+        {
+            _products.Add(obj);
         }
     }
 }

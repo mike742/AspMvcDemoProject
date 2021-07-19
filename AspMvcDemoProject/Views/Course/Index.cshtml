@@ -1,49 +1,39 @@
-﻿@model IEnumerable<Vendor>
-
-<h2>Vendors</h2>
-
-<p>
-    <a asp-action="Create">Create new</a>
-</p>
-
+﻿@model IEnumerable<Course>
+<h1>Courses</h1>
 <table class="table table-striped">
     <thead class="thead-dark">
         <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Phone</th>
-            <th scope="col">State</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Course Number</th>
+            <th scope="col">CourseID</th>
+            <th scope="col">Description</th>
         </tr>
     </thead>
     <tbody>
-
         @foreach (var item in Model)
         {
             <tr>
                 <th scope="row">
-                    <span 
-                          style="cursor: pointer"
-                          data-toggle="modal" 
-                          data-target="#exampleModal"
-                          onclick="Detail(@item.V_code, '@item.V_name')"
-                          >
-                        @item.V_name
+                    <span style="cursor: pointer"
+                          data-toggle="modal"
+                          data-target="#studentModal"
+                          onclick="Detail(@item.CourseID, '@item.CourseName')">
+                        @item.CourseName
                     </span>
                 </th>
-                <td>@item.V_contact</td>
-                <td>(@item.V_AreaCode) @item.V_phone</td>
-                <td>@item.V_state</td>
+                <td>@item.CourseNumber</td>
+                <td>(@item.CourseID</td>
+                <td>@item.CourseDescription</td>
             </tr>
-        }
+}
     </tbody>
 </table>
-
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="studentModal" tabindex="-1" aria-labelledby="studentModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="studentModalLabel">Students enrolled in This Course</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -57,16 +47,13 @@
         </div>
     </div>
 </div>
-
 <script>
     function Detail(code, name) {
-        
-        const url = "@Url.Action("GetProdutsByVendorCode", "Product")/" + code;
+        const url = "@Url.Action("GetStudentByCourseID", "Student")/" + code;
         console.log(code, url);
-
         $.get(url, function (data) {
             //console.log(data);
-            $('#exampleModalLabel').html("Products of " + name);
+            $('#studentModalLabel').html("Students enrolled in " + name);
             $('.modal-body').html(data);
         });
     }

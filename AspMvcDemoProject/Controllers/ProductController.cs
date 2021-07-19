@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspMvcDemoProject.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AspMvcDemoProject.Controllers
 {
@@ -42,13 +43,34 @@ namespace AspMvcDemoProject.Controllers
             return View(list);
         }
 
-        public IActionResult GetProdutsByVendorCode(int? code)
+        public IActionResult GetProdutsByVendorCode(int? id)
         {
             var products = MockingRepository.GetProducs()
-                .Where(p => p.V_code == code)
+                .Where(p => p.V_code == id)
                 .Select(e => e.P_descript);
 
+            if (products.Count() == 0)
+            {
+                return Content("No Products found");
+            }
+
             return Content(string.Join("<br>", products));
+        }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            ViewBag.Vendors = 
+                new SelectList(MockingRepository.GetVendors(), "V_code", "V_name");
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Product obj)
+        {
+            MockingRepository.AddProduct(obj);
+
+            return RedirectToAction("Index");
         }
     }
 }

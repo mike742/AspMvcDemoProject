@@ -1,0 +1,41 @@
+﻿@model Product
+
+    <h2>Create Product</h2>
+
+    <form asp-action="Create">
+        <div class="form-group">
+            <label asp-for="P_Code"></label>
+            <input asp-for="P_Code" />
+        </div>
+        <div class="form-group">
+            <label asp-for="P_descript"></label>
+            <input asp-for="P_descript" />
+        </div>
+        <div class="form-group">
+            <label asp-for="P_InDate"></label>
+            <input asp-for="P_InDate" />
+        </div>
+        <div class="form-group">
+            <label asp-for="P_QOH"></label>
+            <input asp-for="P_QOH" />
+        </div>
+        <div class="form-group">
+            <label asp-for="P_Min"></label>
+            <input asp-for="P_Min" />
+        </div>
+        <div class="form-group">
+            <label asp-for="P_Price"></label>
+            <input asp-for="P_Price" />
+        </div>
+        <div class="form-group">
+            <label asp-for="P_Discount"></label>
+            <input asp-for="P_Discount" />
+        </div>
+
+        <div class="form-group">
+            <label>Vendor</label>
+            <select asp-for="V_code" asp-items="ViewBag.Vendors"></select>
+        </div>
+
+        <button type="submit">Create</button>
+    </form>
