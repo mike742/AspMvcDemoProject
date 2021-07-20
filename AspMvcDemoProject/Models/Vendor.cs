@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace AspMvcDemoProject.Models
 {
     public class Vendor
     {
+        [Key]
         [DisplayName("Code")]
         public int V_code { set; get; }
         [DisplayName("Name")]

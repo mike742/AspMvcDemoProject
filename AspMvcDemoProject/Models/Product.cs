@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +10,7 @@ namespace AspMvcDemoProject.Models
 {
     public class Product
     {
+        [Key]
         [DisplayName("Code")]
         public string P_Code { set; get; }
         
@@ -28,6 +31,8 @@ namespace AspMvcDemoProject.Models
         
         [DisplayName("Discount")]
         public double P_Discount { set; get; }
+        
+        [ForeignKey("Vendor")]
         public int? V_code { set; get; }
         public Vendor Vendor { set; get; }
     }
