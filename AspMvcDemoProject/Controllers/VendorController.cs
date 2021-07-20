@@ -10,9 +10,15 @@ namespace AspMvcDemoProject.Controllers
 {
     public class VendorController : Controller
     {
+        private readonly AppDbContext _context;
+
+        public VendorController(AppDbContext context)
+        {
+            _context = context;
+        }
         public IActionResult Index()
         {
-            var list = MockingRepository.GetVendors();
+            var list = _context.Vendors;
             return View(list);
         }
 
