@@ -11,6 +11,7 @@ namespace AspMvcDemoProject.Controllers
     public class VendorController : Controller
     {
         private readonly AppDbContext _context;
+        private readonly Mapper _mapper = new Mapper();
 
         public VendorController(AppDbContext context)
         {
@@ -18,7 +19,8 @@ namespace AspMvcDemoProject.Controllers
         }
         public IActionResult Index()
         {
-            var list = _context.Vendors;
+            // var list = _context.Vendors;
+            var list = MockingRepository.GetVendors();
             return View(list);
         }
 
@@ -29,10 +31,10 @@ namespace AspMvcDemoProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Vendor obj)
+        public IActionResult Create(VendorDto obj)
         {
-            // add new obj to the collection
-            MockingRepository.AddVendor(obj);
+            Vendor newVendor = _mapper.Map(obj);
+            MockingRepository.AddVendor(newVendor);
 
             return RedirectToAction("Index");
         }
