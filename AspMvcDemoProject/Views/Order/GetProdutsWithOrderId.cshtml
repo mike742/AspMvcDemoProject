@@ -1,0 +1,29 @@
+﻿@model AspMvcDemoProject.ViewModels.SaveProductsVM
+
+@using (Html.BeginForm("SaveProducts", "Order"))
+{
+    <table class="table table-striped table-hover">
+
+        @if (Model != null)
+        {
+            for (var i = 0; i < Model.Products.Count(); ++i)
+            {
+                <tr>
+                    <td>
+                        @Html.CheckBoxFor(x => Model.Products[i].IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(x => Model.Products[i].Descript)
+                    </td>
+                    <td>
+                        $@Html.DisplayFor(x => Model.Products[i].Price)
+                    </td>
+                </tr>
+                @Html.HiddenFor(x => Model.Products[i].Id)
+            }
+            @Html.HiddenFor(x => Model.OrderId)
+        }
+    </table> 
+
+    <input type="submit" value="Save" />
+}
