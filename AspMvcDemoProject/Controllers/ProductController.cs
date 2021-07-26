@@ -28,7 +28,7 @@ namespace AspMvcDemoProject.Controllers
 
         public IActionResult GetProdutsByVendorCode(int? id)
         {
-            var products = MockingRepository.GetProducs()
+            var products = _context.Products
                 .Where(p => p.V_code == id)
                 .Select(e => e.P_descript);
 
@@ -44,16 +44,23 @@ namespace AspMvcDemoProject.Controllers
         public IActionResult Create()
         {
             ViewBag.Vendors = 
-                new SelectList(MockingRepository.GetVendors(), "V_code", "V_name");
+                new SelectList(_context.Vendors, "V_code", "V_name");
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(Product obj)
         {
-            MockingRepository.AddProduct(obj);
+            if (ModelState.IsValid)
+            {
+                _context.Products.Add(obj);
+                _context.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            ViewBag.Vendors =
+                new SelectList(_context.Vendors, "V_code", "V_name");
+            return View(obj);
         }
     }
 }

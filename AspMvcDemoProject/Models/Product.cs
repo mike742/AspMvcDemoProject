@@ -15,21 +15,30 @@ namespace AspMvcDemoProject.Models
         public string P_Code { set; get; }
         
         [DisplayName("Desc")]
+        [Required]
+        [MaxLength(255, ErrorMessage ="Length of Product desc must be less than 255")]
         public string P_descript { set; get; }
         
         [DisplayName("In Date")]
+        [Required]
         public DateTime P_InDate { set; get; }
 
         [DisplayName("QOH")]
+        [Required]
         public int P_QOH { set; get; }
         
         [DisplayName("Min")]
+        [Required]
         public int P_Min { set; get; }
 
         [DisplayName("Price")]
+        [Required]
+        [Range(0.01, double.MaxValue,
+            ErrorMessage = "Price value must be greater than 0")]
         public double P_Price { set; get; }
         
         [DisplayName("Discount")]
+        [Required]
         public double P_Discount { set; get; }
         
         [ForeignKey("Vendor")]
